@@ -1,24 +1,19 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int>elementAndItsIndices;
-        for(int i = 0; i < nums.size(); i++){
-            elementAndItsIndices[nums[i]] = i;
-        }
-        int x,y;
-        for(int i = 0; i < nums.size(); i++){
-            x = i;
-            int secondTarget = target - nums[i];
-
-            auto it = elementAndItsIndices.find(secondTarget);
-            if(it != elementAndItsIndices.end() && it->second != i){
-                y = it->second;
+        vector <int> result;
+        for(int i = 0; i < nums.size() - 1; i++){
+            for(int j = i+1; j < nums.size(); j++){
+                if(nums[i] + nums[j] == target){
+                    result.push_back(i);
+                    result.push_back(j);
+                    break;
+                }
+            }
+            if(!result.empty()){
                 break;
             }
         }
-        vector<int>result;
-        result.push_back(x);
-        result.push_back(y);
         return result;
     }
 };
